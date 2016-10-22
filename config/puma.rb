@@ -38,10 +38,17 @@ environment ENV.fetch("RAILS_ENV") { "development" }
 # option you will want to use this block to reconnect to any threads
 # or connections that may have been created at application boot, Ruby
 # cannot share connections between processes.
-#
-# on_worker_boot do
-#   ActiveRecord::Base.establish_connection if defined?(ActiveRecord)
-# end
+before_fork do
+  CloudDatastore.reset_dataset
+end
+
+on_worker_boot do
+  CloudDatastore.dataset
+end
+
+on_restart do
+  CloudDatastore.reset_dataset
+end
 
 # Allow puma to be restarted by `rails restart` command.
 plugin :tmp_restart

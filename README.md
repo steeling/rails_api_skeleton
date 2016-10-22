@@ -32,3 +32,4 @@ Steps to install with docker/kubernetes
 5. Install minikube
 6. Install gcloud: https://cloud.google.com/sdk/docs/quickstart-mac-os-x
 7. Install kubectl: `gcloud components install kubectl`
+8. Install development datastore `gcloud components install cloud-datastore-emulator`
